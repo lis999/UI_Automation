@@ -9,6 +9,7 @@ class TextBoxPage(BasePage):
     locators = TextBoxPageLocators()
 
     def fill_all_fields(self):
+        self.remove_footer()
         person_info = next(generated_person())
         full_name = person_info.full_name
         email = person_info.email

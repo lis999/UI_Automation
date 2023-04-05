@@ -4,7 +4,6 @@ from selenium.webdriver.common.by import By
 class TextBoxPageLocators:
 
     # form fields
-
     FULL_NAME = (By.CSS_SELECTOR, "input[id='userName']")
     EMAIL = (By.CSS_SELECTOR, 'input[id = "userEmail"]')
     CURRENT_ADDRESS = (By.CSS_SELECTOR, 'textarea[id = "currentAddress"]')
