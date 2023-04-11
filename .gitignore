@@ -1,4 +1,4 @@
 *.log
-.idea
+.idea/
 debug.py
-__pycache__
+__pycache__/
