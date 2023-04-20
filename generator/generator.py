@@ -19,3 +19,11 @@ def generated_person():
         current_address=fake.address(),
         permanent_address=fake.address(),
     )
+
+
+def generated_file():
+    path = rf'C:\Users\Sergey\Projects\UI_Automation\files\filetest{random.randint(0, 999)}.txt'
+    file = open(path, 'w+')
+    file.write(f'Something from somewhere{random.randint(0, 999)}')
+    file.close()
+    return file.name, path
