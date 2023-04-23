@@ -49,4 +49,8 @@ class BasePage:
         action.context_click(element)
         action.perform()
 
-
+    def open_new_window(self, locator, new_window_locator):
+        self.element_is_visible(locator).click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        new_window_text = self.element_is_present(new_window_locator).text
+        return new_window_text
