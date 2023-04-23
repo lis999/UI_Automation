@@ -144,4 +144,3 @@ class TestElements:
             dynamic_properties_page.open()
             appear = dynamic_properties_page.check_apper_of_button()
             assert appear is True, "button did not appear after 5 seconds"
-

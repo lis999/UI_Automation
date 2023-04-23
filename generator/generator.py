@@ -18,6 +18,7 @@ def generated_person():
         email=fake.email(),
         current_address=fake.address(),
         permanent_address=fake.address(),
+        mobile=fake.msisdn(),
     )
 
 
