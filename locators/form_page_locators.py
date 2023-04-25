@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 import random
 
 
-class FormPageLocators:
+class FormsPageLocators:
     FIRST_NAME = (By.CSS_SELECTOR, "input[id='firstName']")
     LAST_NAME = (By.CSS_SELECTOR, "input[id='lastName']")
     EMAIL = (By.CSS_SELECTOR, "input[id='userEmail']")

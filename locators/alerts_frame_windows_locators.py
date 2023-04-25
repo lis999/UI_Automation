@@ -15,3 +15,10 @@ class AlertsPageLocators:
     PROMPT_BOX_ALERT_BUTTON = (By.CSS_SELECTOR, "button[id='promtButton']")
     CONFIRM_BOX_ALERT_RESULT = (By.CSS_SELECTOR, "span[id='confirmResult']")
     PROMPT_BOX_ALERT_RESULT = (By.CSS_SELECTOR, "span[id='promptResult']")
+
+
+class FramesPageLocators:
+    BIG_FRAME = (By.CSS_SELECTOR, "iframe[id='frame1']")
+    SMALL_FRAME = (By.CSS_SELECTOR, "iframe[id='frame2']")
+    BIG_FRAME_TEXT = (By.CSS_SELECTOR, "h1[id='sampleHeading']")
+    SMALL_FRAME_TEXT = (By.CSS_SELECTOR, "h1[id='sampleHeading']")

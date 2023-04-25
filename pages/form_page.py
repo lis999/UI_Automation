@@ -2,11 +2,11 @@ import os
 from selenium.webdriver import Keys
 from generator.generator import generated_person, generated_file
 from pages.base_page import BasePage
-from locators.form_page_locators import FormPageLocators
+from locators.form_page_locators import FormsPageLocators
 
 
-class FormPage(BasePage):
-    locators = FormPageLocators()
+class FormsPage(BasePage):
+    locators = FormsPageLocators()
 
     def fill_form_fields(self):
         person = next(generated_person())

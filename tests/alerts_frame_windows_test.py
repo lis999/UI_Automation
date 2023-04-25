@@ -1,8 +1,8 @@
 import time
-from pages.alerts_frame_windows_page import BrowserWindowsPage, AlertsPage
+from pages.alerts_frame_windows_page import BrowserWindowsPage, AlertsPage, FramesPage
 
 
-class TestAlertsFrameWindows:
+class TestAlertsFramesWindows:
 
     class TestBrowserWindows:
 
@@ -17,7 +17,6 @@ class TestAlertsFrameWindows:
             new_tab_page.open()
             new_window_result = new_tab_page.check_new_window_opened()
             assert new_window_result == "This is a sample page", "The new window hasn't been opened"
-
 
     class TestAlerts:
 
@@ -45,3 +44,13 @@ class TestAlertsFrameWindows:
             text, alert_result = alert_page.check_prompt_alert()
             #assert alert_result == f"You entered {text}"\
             assert text in alert_result, "the prompt box result doesn't match with entered data"
+
+    class TestFrames:
+
+        def test_frames(self, driver):
+            frame_page = FramesPage(driver, "https://demoqa.com/frames")
+            frame_page.open()
+            result_big_frame = frame_page.check_frame('frame1')
+            result_small_frame = frame_page.check_frame('frame2')
+            assert result_big_frame == ['This is a sample page', '500px', '350px'], "The frame does not exist"
+            assert result_small_frame == ['This is a sample page', '100px', '100px'], "The frame does not exist"
