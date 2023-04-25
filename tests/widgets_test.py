@@ -21,5 +21,15 @@ class TestWidgets:
         def test_fill_multi_autocomplete(self, driver):
             autocomplete_page = AutoCompletePage(driver, "https://demoqa.com/auto-complete")
             autocomplete_page.open()
+            colors = autocomplete_page.fill_input_multi()
+            colors_result = autocomplete_page.check_color_in_multi()
+            assert colors == colors_result
+
+        def test_remove_value_from_multi(self, driver):
+            autocomplete_page = AutoCompletePage(driver, "https://demoqa.com/auto-complete")
+            autocomplete_page.open()
             autocomplete_page.fill_input_multi()
             time.sleep(2)
+            autocomplete_page.remove_value_from_multi()
+            time.sleep(2)
+
