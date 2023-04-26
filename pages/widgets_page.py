@@ -1,8 +1,8 @@
 from selenium.common import TimeoutException
 from selenium.webdriver import Keys
 import random
-from generator.generator import generated_color
-from locators.widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators
+from generator.generator import generated_color, generated_date
+from locators.widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators, DatePickerPageLocators
 from pages.base_page import BasePage
 
 
@@ -72,3 +72,18 @@ class AutoCompletePage(BasePage):
     def check_color_in_single(self):
         color = self.element_is_visible(self.locators.SINGLE_VALUE)
         return color.text
+
+
+class DatePickerPage(BasePage):
+    locators = DatePickerPageLocators()
+
+    def select_date(self):
+        date = next(generated_date())
+        input_date = self.element_is_visible(self.locators.DATE_INPUT)
+        value_date_before = input_date.get_attribute('value')
+        input_date.click()
+        self.set_date_by_text(self.locators.DATE_SELECT_MONTH, date.month)
+        self.set_date_by_text(self.locators.DATE_SELECT_YEAR, date.year)
+        self.set_date_item_from_list(self.locators.DATE_SELECT_DAY_LIST, date.day)
+        value_date_after = input_date.get_attribute('value')
+        return value_date_before, value_date_after

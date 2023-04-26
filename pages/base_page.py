@@ -1,3 +1,4 @@
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
@@ -54,3 +55,14 @@ class BasePage:
         self.driver.switch_to.window(self.driver.window_handles[1])
         new_window_text = self.element_is_present(new_window_locator).text
         return new_window_text
+
+    def set_date_by_text(self, element, value):       # this can be used for calendars
+        select = Select(self.element_is_present(element))
+        select.select_by_visible_text(value)
+
+    def set_date_item_from_list(self, elements, value):
+        item_list = self.elements_are_present(elements)
+        for item in item_list:
+            if item.text == value:
+                item.click()
+                break
