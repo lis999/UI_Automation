@@ -61,3 +61,14 @@ class AutoCompletePage(BasePage):
         for color in color_list:
             colors.append(color.text)
         return colors
+
+    def fill_input_single(self):
+        color = random.sample(next(generated_color()).color_name, k=1)
+        input_single = self.element_is_clickable(self.locators.SINGLE_INPUT)
+        input_single.send_keys(color)
+        input_single.send_keys(Keys.ENTER)
+        return color[0]
+
+    def check_color_in_single(self):
+        color = self.element_is_visible(self.locators.SINGLE_VALUE)
+        return color.text
