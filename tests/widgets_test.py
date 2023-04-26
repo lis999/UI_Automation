@@ -43,8 +43,10 @@ class TestWidgets:
             date_picker_page = DatePickerPage(driver, "https://demoqa.com/date-picker")
             date_picker_page.open()
             value_date_before, value_date_after = date_picker_page.select_date()
-            assert value_date_before != value_date_after, ''
+            assert value_date_before != value_date_after, 'The date has not been changed'
 
         def test_change_date_and_time(self, driver):
             date_picker_page = DatePickerPage(driver, "https://demoqa.com/date-picker")
             date_picker_page.open()
+            value_date_before, value_date_after = date_picker_page.select_date_and_time()
+            assert value_date_before != value_date_after, 'The date and time have not been changed'

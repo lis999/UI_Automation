@@ -87,3 +87,17 @@ class DatePickerPage(BasePage):
         self.set_date_item_from_list(self.locators.DATE_SELECT_DAY_LIST, date.day)
         value_date_after = input_date.get_attribute('value')
         return value_date_before, value_date_after
+
+    def select_date_and_time(self):
+        date = next(generated_date())
+        input_date = self.element_is_visible(self.locators.DATE_AND_TIME_INPUT)
+        value_date_before = input_date.get_attribute('value')
+        input_date.click()
+        self.element_is_visible(self.locators.DATE_AND_TIME_MONTH).click()
+        self.set_date_item_from_list(self.locators.DATE_AND_TIME_MONTH_LIST, date.month)
+        self.element_is_visible(self.locators.DATE_AND_TIME_YEAR).click()
+        self.set_date_item_from_list(self.locators.DATE_AND_TIME_YEAR_LIST, date.year)
+        self.set_date_item_from_list(self.locators.DATE_SELECT_DAY_LIST, date.day)
+        self.set_date_item_from_list(self.locators.DATE_AND_TIME_TIME_LIST, date.time)
+        value_date_after = input_date.get_attribute('value')
+        return value_date_before, value_date_after
