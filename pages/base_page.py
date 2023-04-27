@@ -40,6 +40,11 @@ class BasePage:
         #self.driver.execute_script(" document.getElementById('close-fixedban').remove();")
         self.driver.execute_script('document.getElementById("fixedban").style.display="none";')
 
+    def action_drag_and_drop_by_offset(self, element, x_coords, y_coords):
+        action = ActionChains(self.driver)
+        action.drag_and_drop_by_offset(element, x_coords, y_coords)
+        action.perform()
+
     def action_double_click(self, element):
         action = ActionChains(self.driver)
         action.double_click(element)
