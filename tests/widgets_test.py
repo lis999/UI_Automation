@@ -57,9 +57,10 @@ class TestWidgets:
             slider = SliderPage(driver, "https://demoqa.com/slider")
             slider.open()
             before, after = slider.change_slider_value()
-            assert before != after
+            assert before != after, 'the slider value has not been changed'
 
         def test_progress_bar(self, driver):
             progress_bar = ProgressBarPage(driver, "https://demoqa.com/progress-bar")
             progress_bar.open()
-            pass
+            before, after = progress_bar.change_progress_bar_value()
+            assert before != after, 'the progress bar value has not been changed'
