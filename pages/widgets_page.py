@@ -5,7 +5,7 @@ from selenium.webdriver import Keys
 import random
 from generator.generator import generated_color, generated_date
 from locators.widgets_page_locators import AccordianPageLocators, AutoCompletePageLocators, DatePickerPageLocators, \
-    SliderPageLocators, ProgressBarPageLocators, TabsPageLocators
+    SliderPageLocators, ProgressBarPageLocators, TabsPageLocators, ToolTipsPageLocators
 from pages.base_page import BasePage
 
 
@@ -157,3 +157,9 @@ class TabsPage(BasePage):
         button.click()
         content = self.element_is_visible(tabs[name_tab]['content']).text
         return [button.text, len(content)]
+
+
+class ToolTipsPage(BasePage):
+    locators = ToolTipsPageLocators()
+
+    def check_tool_tips(self):

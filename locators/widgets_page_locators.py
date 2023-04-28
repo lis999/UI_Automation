@@ -54,3 +54,11 @@ class TabsPageLocators:
     TABS_USE_CONTENT = (By.CSS_SELECTOR, "div[id='demo-tabpane-use']")
     TABS_MORE = (By.CSS_SELECTOR, "a[id='demo-tab-more']")
     TABS_MORE_CONTENT = (By.CSS_SELECTOR, "div[id='demo-tabpane-more']")
+
+
+class ToolTipsPageLocators:
+    BUTTON = (By.CSS_SELECTOR, "button[id='toolTipButton']")
+
+    FIELD = (By.CSS_SELECTOR, "input[id='toolTipTextField']")
+    CONTRARY_LINK = (By.XPATH, "//*[.='Contrary']")
+    SECTION_LINK = (By.XPATH, "//*[.='1.10.32']")
