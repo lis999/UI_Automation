@@ -85,4 +85,8 @@ class TestWidgets:
         def test_tool_tips(self, driver):
             tool_tips_page = ToolTipsPage(driver, "https://demoqa.com/tool-tips")
             tool_tips_page.open()
-            pass
+            button_text, field_text, contrary_text, section_text = tool_tips_page.check_tool_tips()
+            assert button_text == 'You hovered over the Button', 'hover is missing or incorrect content'
+            assert field_text == 'You hovered over the text field', 'hover is missing or incorrect content'
+            assert contrary_text == 'You hovered over the Contrary', 'hover is missing or incorrect content'
+            assert section_text == 'You hovered over the 1.10.32', 'hover is missing or incorrect content'
