@@ -83,6 +83,6 @@ class TestWidgets:
     class TestToolTips:
 
         def test_tool_tips(self, driver):
-            tool_tips = ToolTipsPage(driver, "https://demoqa.com/tool-tips")
-            tool_tips.open()
+            tool_tips_page = ToolTipsPage(driver, "https://demoqa.com/tool-tips")
+            tool_tips_page.open()
             pass

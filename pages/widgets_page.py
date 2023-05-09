@@ -162,4 +162,5 @@ class TabsPage(BasePage):
 class ToolTipsPage(BasePage):
     locators = ToolTipsPageLocators()
 
-    def check_tool_tips(self):
+    def get_text_from_tool_tips(self, hover_elem, wait_elem):
+        element = self.element_is_present(hover_elem)
