@@ -81,3 +81,7 @@ class BasePage:
             if item.text == value:
                 item.click()
                 break
+
+    def hide_the_add_banner(self, element):
+        banner = self.element_is_visible(element)
+        self.driver.execute_script("arguments[0].style.display = 'none';", banner)
