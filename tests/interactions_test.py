@@ -65,3 +65,7 @@ class TestInteractions:
         def test_revert_draggable_droppable(self, driver):
             droppable_page = DroppablePage(driver, "https://demoqa.com/droppable")
             droppable_page.open()
+            will_after_move, will_after_revert = droppable_page.drop_revert_draggable('will')
+            will_not_after_move, will_not_after_revert = droppable_page.drop_revert_draggable('will_not')
+            assert will_after_move != will_after_revert, 'the element has not reverted'
+            assert will_not_after_move == will_not_after_revert, 'the element has reverted'
