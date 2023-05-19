@@ -49,10 +49,18 @@ class TestInteractions:
         def test_accept_droppable(self, driver):
             droppable_page = DroppablePage(driver, "https://demoqa.com/droppable")
             droppable_page.open()
+            not_accept, accept = droppable_page.drop_accept()
+            assert not_accept == 'Drop here', "the element has been accepted"
+            assert accept == 'Dropped!', "the element has not been accepted"
 
         def test_prevent_propagation_droppable(self, driver):
             droppable_page = DroppablePage(driver, "https://demoqa.com/droppable")
             droppable_page.open()
+            not_greedy, not_greedy_inner, greedy, greedy_inner = droppable_page.drop_prevent_propagation()
+            assert not_greedy == 'Dropped!', 'The element text has not been changed'
+            assert not_greedy_inner == 'Dropped!', 'The element text has not been changed'
+            assert greedy == 'Outer droppable', 'The element text has been changed'
+            assert greedy_inner == 'Dropped!', 'The element text has not been changed'
 
         def test_revert_draggable_droppable(self, driver):
             droppable_page = DroppablePage(driver, "https://demoqa.com/droppable")

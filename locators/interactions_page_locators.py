@@ -37,7 +37,7 @@ class DroppablePageLocators:
     # Simple
     SIMPLE_TAB = (By.CSS_SELECTOR, "a[id='droppableExample-tab-simple']")
     DRAG_ME_SIMPLE = (By.CSS_SELECTOR, "div[id='draggable']")
-    DROP_HERE_SIMPLE = (By.CSS_SELECTOR, "#simpleDropContainer #droppable")
+    DROP_HERE_SIMPLE = (By.CSS_SELECTOR, "#simpleDropContainer #droppable")  # container id and element id used
 
     # Accept
     ACCEPT_TAB = (By.CSS_SELECTOR, "a[id='droppableExample-tab-accept']")
@@ -46,11 +46,11 @@ class DroppablePageLocators:
     DROP_HERE_ACCEPT = (By.CSS_SELECTOR, "#acceptDropContainer #droppable")
 
     # Prevent Propagation
-    PREVENT_TAB = (By.CSS_SELECTOR, "a[id='droppableExample-tab-preventPropagation']")
+    PREVENT_TAB = (By.CSS_SELECTOR, "a[id='droppableExample-tab-preventPropogation']")
     NOT_GREEDY_DROP_BOX_TEXT = (By.CSS_SELECTOR, "div[id='notGreedyDropBox'] p:nth-child(1)")
     NOT_GREEDY_INNER_BOX = (By.CSS_SELECTOR, "div[id='notGreedyInnerDropBox']")
     GREEDY_DROP_BOX_TEXT = (By.CSS_SELECTOR, "div[id='greedyDropBox'] p:nth-child(1)")
-    GREEDY_INNER_BOX = (By.CSS_SELECTOR, "div[id='greedyInnerDropBox']")
+    GREEDY_INNER_BOX = (By.CSS_SELECTOR, "div[id='greedyDropBoxInner']")
     DRAG_ME_PREVENT = (By.CSS_SELECTOR, "#ppDropContainer #dragBox")
 
     # Revert Draggable
