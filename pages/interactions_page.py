@@ -1,8 +1,9 @@
 import random
+import re
 import time
 
 from locators.interactions_page_locators import SortablePageLocators, SelectablePageLocators, ResizablePageLocators, \
-    DroppablePageLocators
+    DroppablePageLocators, DraggablePageLocators
 from pages.base_page import BasePage
 
 
@@ -138,3 +139,44 @@ class DroppablePage(BasePage):
         return position_after_move, position_after_revert
 
 
+class DraggablePage(BasePage):
+    locators = DraggablePageLocators()
+
+    def get_position_before_and_after(self, drag_element):
+
+        self.action_drag_and_drop_by_offset(drag_element, random.randint(0, 50), random.randint(0, 50))
+        position_before = drag_element.get_attribute('style')
+        self.action_drag_and_drop_by_offset(drag_element, random.randint(0, 50), random.randint(0, 50))
+        position_after = drag_element.get_attribute('style')
+        return position_before, position_after
+
+    def simple_drag_box(self):
+        drag_div = self.element_is_visible(self.locators.DRAG_ME)
+        position_before, position_after = self.get_position_before_and_after(drag_div)
+        return position_before, position_after
+
+    def get_top_position(self, positions):
+        return re.findall(r'\d[0-9]|\d', positions.split(';')[2])
+
+    def get_left_position(self, positions):
+        return re.findall(r'\d[0-9]|\d', positions.split(';')[1])
+
+    def axis_restricted_x(self):
+        self.element_is_visible(self.locators.AXIS_TAB).click()
+        only_x = self.element_is_visible(self.locators.ONLY_X)
+        position_x = self.get_position_before_and_after(only_x)
+        top_x_before = self.get_top_position(position_x[0])
+        top_x_after = self.get_top_position(position_x[1])
+        left_x_before = self.get_left_position(position_x[0])
+        left_x_after = self.get_left_position(position_x[1])
+        return [top_x_before, top_x_after], [left_x_before, left_x_after]
+
+    def axis_restricted_y(self):
+        self.element_is_visible(self.locators.AXIS_TAB).click()
+        only_y = self.element_is_visible(self.locators.ONLY_Y)
+        position_x = self.get_position_before_and_after(only_y)
+        top_x_before = self.get_top_position(position_x[0])
+        top_x_after = self.get_top_position(position_x[1])
+        left_x_before = self.get_left_position(position_x[0])
+        left_x_after = self.get_left_position(position_x[1])
+        return [top_x_before, top_x_after], [left_x_before, left_x_after]
