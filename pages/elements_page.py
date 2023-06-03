@@ -3,6 +3,7 @@ import os
 import random
 import time
 
+import allure
 import requests
 from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
@@ -16,6 +17,7 @@ from pages.base_page import BasePage
 class TextBoxPage(BasePage):
     locators = TextBoxPageLocators()
 
+    @allure.step("Fill in all fields")
     def fill_all_fields(self):
         self.remove_footer()
         person_info = next(generated_person())
@@ -23,14 +25,17 @@ class TextBoxPage(BasePage):
         email = person_info.email
         current_address = person_info.current_address
         permanent_address = person_info.permanent_address
-        self.element_is_visible(self.locators.FULL_NAME).send_keys(full_name)
-        self.element_is_visible(self.locators.EMAIL).send_keys(email)
-        self.element_is_visible(self.locators.CURRENT_ADDRESS).send_keys(current_address)
-        self.element_is_visible(self.locators.PERMANENT_ADDRESS).send_keys(permanent_address)
-        #self.go_to_element(self.locators.SUBMIT).click()
-        self.element_is_visible(self.locators.SUBMIT).click()
+        with allure.step('filing fields'):
+            self.element_is_visible(self.locators.FULL_NAME).send_keys(full_name)
+            self.element_is_visible(self.locators.EMAIL).send_keys(email)
+            self.element_is_visible(self.locators.CURRENT_ADDRESS).send_keys(current_address)
+            self.element_is_visible(self.locators.PERMANENT_ADDRESS).send_keys(permanent_address)
+            #self.go_to_element(self.locators.SUBMIT).click()
+        with allure.step('click submit button'):
+            self.element_is_visible(self.locators.SUBMIT).click()
         return full_name, email, current_address, permanent_address
 
+    @allure.step("check filled form")
     def check_filled_form(self):
         full_name = self.element_is_present(self.locators.CREATED_FULL_NAME).text.split(':')[1]
         email = self.element_is_present(self.locators.CREATED_EMAIL).text.split(':')[1]
@@ -43,9 +48,11 @@ class CheckBoxPage(BasePage):
 
     locators = CheckBoxPageLocators()
 
+    @allure.step("open full list")
     def open_full_list(self):
         self.element_is_visible(self.locators.EXPAND_ALL_BUTTON).click()
 
+    @allure.step("click random checkbox")
     def click_random_checkbox(self):
         item_list = self.elements_are_visible(self.locators.ITEM_LIST)
         count = 21
@@ -58,6 +65,7 @@ class CheckBoxPage(BasePage):
             else:
                 break
 
+    @allure.step("get checked checkboxes")
     def get_checked_checkboxes(self):
         checked_list = self.elements_are_present(self.locators.CHECKED_ITEMS)
         data = []
@@ -66,6 +74,7 @@ class CheckBoxPage(BasePage):
             data.append(title_item.text)
         return str(data).replace(' ', '').replace('doc', '').replace('.', '').lower()
 
+    @allure.step("get output result")
     def get_output_result(self):
         result_list = self.elements_are_present(self.locators.OUTPUT_RESULT)
         data = []
@@ -77,12 +86,14 @@ class CheckBoxPage(BasePage):
 class RadioButtonPage(BasePage):
     locators = RadioButtonPageLocators()
 
+    @allure.step("click on the radio button")
     def click_on_the_radio_button(self, choice):
         choices = {'yes': self.locators.YES_RADIOBUTTON,
                    'impressive': self.locators.IMPRESSIVE_RADIOBUTTON,
                    'no': self.locators.NO_RADIOBUTTON}
         radio = self.element_is_visible(choices[choice]).click()
 
+    @allure.step("get output result")
     def get_output_result(self):
         return self.element_is_present(self.locators.OUTPUT_RESULT).text
 
@@ -90,6 +101,7 @@ class RadioButtonPage(BasePage):
 class WebTablePage(BasePage):
     locators = WebTablePageLocators()
 
+    @allure.step("add new person")
     def add_new_person(self):
         count = 1
         while count != 0:

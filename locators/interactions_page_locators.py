@@ -66,7 +66,7 @@ class DraggablePageLocators:
     # Axis Restricted
     AXIS_TAB = (By.CSS_SELECTOR, "a[id='draggableExample-tab-axisRestriction']")
     ONLY_X = (By.CSS_SELECTOR, "div[id='restrictedX']")
-    ONLY_Y =  (By.CSS_SELECTOR, "div[id='restrictedY']")
+    ONLY_Y = (By.CSS_SELECTOR, "div[id='restrictedY']")
     # Container Restricted
 
     # Cursor Style
